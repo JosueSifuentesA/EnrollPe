@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8" /> 
+<link rel="stylesheet" th:href="@{/css/styleFormSolicitud.css}"></link>
+<title>REGISTRAR ALUMNO</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&family=Ramaraja&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+<body>
+
+<section>
+    	<div class="row no-gutters">
+    		<div class="col-lg-1 border-right d-none d-lg-block" >
+    			<div class="d-flex h-100">
+    			</div>
+    		</div> 	
+    		<div class="col-lg-11">
+				<nav class="navbar navbar-expand-lg">
+				  <a class="navbar-brand" href="enrollpe"><img th:src="@{/imagenes/logooficial.png}"></a>
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				    <span class="icon ion-md-menu lead-xl text-dark"></span>
+				  </button>
+				
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+				    <ul class="navbar-nav ml-auto">
+				      <li class="nav-item active">
+				        <a class="nav-link text-dark lead" href="enrollpe">INICIO<span class="sr-only"></span></a>
+				      </li>
+				    </ul>
+				  </div>
+				</nav>
+    		</div>
+    	</div>
+</section>
+
+<div id="formularioGeneral">
+
+	<form th:action="@{/formSolicitud}" th:object="${alumnoNuevo}" method="post">
+
+		<h1><center><class="navbar-brand" href="#">REGISTRATE CON <span class="font-weight-bold">ENROLLPE</span></center></h1>
+
+		<div id = "formDatosColegio">
+		<h3>ENCUENTRA TU COLEGIO</h3>
+			<div class = "form-row">
+			<div class = "form-group col-md-6">
+				<select type = "tipoDocumento" th:name = "escuela" class= "custom-select" required>
+				
+					<option selected disabled value ="">Busca tu escuela</option>
+					<option >LA PAZ</option>
+					<option >SAGRADA FAMILIA</option>
+					<option >CORAZON DE JESUS</option>
+				
+				</select>
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nomApo')}" 
+				th:errors="*{nomApo}">
+				</small>
+			</div>
+		</div>
+		</div>
+		
+		<div id = "formDatosPersonales">
+
+		<h3>DATOS PERSONALES DEL APONDERADO</h3>
+		
+			<div class = "form-row">
+				<div class = "form-group col-md-6">
+					<label>NOMBRE(S) DEL APONDERADO: </label>
+					<input class="form-control" type="text" th:field="*{nomApo}" th:errorsclass="alert-danger"/>
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('nomApo')}" 
+					th:errors="*{nomApo}">
+				</div>
+			</div>
+			
+			<div class = "form-row">
+				<div class = "form-group col-md-6">
+					<label>APELLIDO PATERNO DEL APODERADO</label>
+					<input class="form-control" type="text" th:field="*{apeApo1}" th:errorsclass="alert-danger" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('apeApo1')}" 
+					th:errors="*{apeApo1}">
+					</small>
+				</div>	
+				
+				<div class = "form-group col-md-6">
+				<label>APELLIDO MATERNO DEL APODERADO</label>
+					<input class="form-control" type="text" th:field="*{apeApo2}" th:errorsclass="alert-danger" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('apeApo2')}" 
+					th:errors="*{apeApo2}">
+					</small>
+				</div>
+		</div>
+		
+			<div class = "form-row">
+				<div class = "form-group col-md-6">
+					<label>NUMERO DE DNI</label>
+					<input class="form-control" type="text" th:field="*{numDApo}" th:errorsclass="alert-danger" />
+					<small class="form-text text-danger" th:if="${#fields.hasErrors('numDApo')}" 
+					th:errors="*{numDApo}">
+					</small>
+				</div>
+			</div>
+		
+		<h3>DATOS PERSONALES DEL ALUMNO</h3>
+	
+		<div class = "form-row">
+			<div class = "form-group col-md-6">
+				<label>NOMBRE(S) ALUMNO</label>
+				<input class="form-control" type="text" th:field="*{nomAluN}" th:errorsclass="alert-danger"/>
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('nomAluN')}" 
+				th:errors="*{nomAluN}">
+				</small>
+			</div>
+		</div>
+		
+		<div class = "form-row">
+			<div class = "form-group col-md-6">
+				<label>APELLIDO PATERNO DEL ALUMNO</label>
+				<input class="form-control" type="text" th:field="*{apeAluN1}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('apeAluN1')}" 
+				th:errors="*{apeAluN1}">
+				</small>
+			</div>
+		
+			<div class = "form-group col-md-6">
+				<label>APELLIDO MATERNO DEL ALUMNO</label>
+				<input class="form-control" type="text" th:field="*{apeAluN2}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('apeAluN2')}" 
+				th:errors="*{apeAluN2}">
+			</small>
+			</div>
+		</div>
+			
+		<div class = "form-row">
+			<div class = "form-group col-md-6">
+				<label>NUMERO DE DNI</label>
+				<input class="form-control" type="text" th:field="*{numDAluN}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('numDAluN')}" 
+				th:errors="*{numDAluN}">
+				</small>
+			</div>
+			
+			<div class = "form-group col-md-6">
+				<label>FECHA DE NACIMIENTO</label>
+				<input class="form-control" type="date" th:field="*{fecNac}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('fecNac')}" 
+				th:errors="*{fecNac}">
+				</small>
+			</div>
+		</div>
+		
+		<div class = "form-row">
+			<div class = "form-group col-md-4">
+				<label>DEPARTAMENTO</label>
+				<input class="form-control" type="text" th:field="*{depa}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('depa')}" 
+				th:errors="*{depa}">
+				</small>
+			</div>
+			
+			<div class = "form-group col-md-4">
+				<label>PROVINCIA</label>
+				<input class="form-control" type="text" th:field="*{prov}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('prov')}" 
+				th:errors="*{prov}">
+				</small>
+			</div>
+			
+			<div class = "form-group col-md-4">
+				
+				<label>DIRECCION</label>
+				<input class="form-control" type="text" th:field="*{dire}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('dire')}" 
+				th:errors="*{dire}">
+				</small>
+			</div>
+		</div>
+	</div>
+	
+	<div id = "datosContacto">
+		<h3>DATOS DE CONTACTO</h3>
+		<div class = "form-row">
+			<div class = "form-group col-md-6">
+				<label>EMAIL</label>
+				<input class="form-control" type="email" th:field="*{email}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('email')}" 
+				th:errors="*{email}">
+				</small>
+				</small>
+			</div>
+		
+			<div class = "form-group col-md-6">
+				<label>CELULAR</label>
+				<input class="form-control" type="text" th:field="*{celular}" th:errorsclass="alert-danger" />
+				<small class="form-text text-danger" th:if="${#fields.hasErrors('celular')}" 
+				th:errors="*{celular}">
+				</small>
+			</div>
+		</div>
+	</div>
+	
+	
+	<div id ="archivosRequeridos">
+	
+		<h5>Los siguientes archivos deben ser enviado al correo de "enroll_pe@gmail.com" indicando asunto "Matricula AlumnoNuevo+nombre escuela+nombre estudiante </h5>
+		<br>
+		<div class = "form-row">
+			<div class = "form-group col-md-4">
+				<label>1. Solicitud peticionando la regularizacion y actualizacion de datos</label><br>
+				<label>2. Compromiso de honor del padre de familia del alumno</label><br>
+				<label>3. Copia del DNI del estudiante actualizado</label><br>
+				<div class="custom-file">
+				</div>
+			</div>
+			<div class = "form-group col-md-4">
+			</div>
+			
+			<div class = "form-group col-md-4">
+				<label>4. Libreta de notas original</label><br>
+				<label>5. Certificado de estudios</label><br>
+				<label>6. Croquis actualizado del domicilio actual</label><br>
+				<label>7. Copia del DNI de los padres de familia</label><br>
+				<div class="custom-file">
+				</div>
+			</div>
+		</div>
+			
+	</div>
+	
+
+	<input id="boton" type="submit" value="Registrar Alumno" name="btmRegistrar"></input>
+<input type="hidden" th:field="*{id}"/>
+
+	</form>
+	
+
+
+	
+
+</div>
+
+
+<br><br><br><br>
+
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
+</body>
+</html>
+
+<footer>
+    <div class="footer-content">
+        <h3>ENROLLPE </h3>
+        <p> La mejor pagina para hacer rapida las matriculas  </p>
+        <ul class="socials">
+            <li>  <a href="#"> <i class="fa fa-facebook"> </i>  </a> </li> 
+            <li>  <a href="#"> <i class="fa fa-twitter"> </i>  </a> </li> 
+            <li>  <a href="#"> <i class="fa fa-google-plus"> </i>  </a> </li> 
+        
+            
+            
+        </ul>
+       </div>
+       <div class="footer-bottom">
+           <p> Derechos reservados &copy;2022. Hecho por  <span> GRUPO 4  </span> </p>
+           
+       </div>
+    </footer>
