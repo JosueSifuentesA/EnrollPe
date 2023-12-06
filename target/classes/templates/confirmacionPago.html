@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<meta charset="UTF-8" /> 
+<link rel="stylesheet" th:href="@{/css/styleConfirmacionPago.css}"></link>
+<title>SOLICITUD ENVIADA</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200;600&family=Ramaraja&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/ionicons@4.5.10-0/dist/css/ionicons.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+<body>
+
+<div class="card">
+  <div class="top blue">
+    <div class="icon"><i class="icon ion-md-checkmark"></i></div>
+    <div class="header">
+      <center><h1>SU PAGO SE HA REALIZADO EXITOSAMENTE!</h1></center><br>
+      <h6>No olvide revisar su correo, con los datos de sus aulas!</h6>
+    </div>
+  </div>
+  <div class="footer blue-text" ><a th:href="enrollpe"><span>Regresar</span></a></div>
+</div>
+
+</body>
+</html>

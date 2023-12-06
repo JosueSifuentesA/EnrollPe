@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8" />
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+	integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+	crossorigin="anonymous">
+</head>
+<body>
+	
+	<h1 class="card-header" th:text="${titulo}"></h1>
+	
+	<div class="container py-4">
+		<div class="card bg-light">
+			
+			<div class="card-body">
+				
+				<ul class="list-group">
+				<label>TITULAR DE LA TARJETA</label>
+					<li class="list-group-item" th:text="${pagador.titularTarjeta}"></li>
+				<label>CORREO DEL ALUMNO</label>
+			        <li class="list-group-item" th:text="${pagador.correoAlumno}"></li>
+				</ul>
+			
+			<table class="table table-bordered table-spriped my-4">
+				<thead class="thead-inverse">
+					<tr>
+						<th>Folio</th>
+						<th>Descripción</th>
+						<th>Fecha de Creación</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				
+				<div th:if="${#lists.isEmpty(pagador.facturas)}" 
+					 class="alert alert-info my-4" th:text="'No hay boletas asignadas para el alumno(a) '
+					 										+ ${pagador.correoAlumno} ">
+				<tbody>
+					<tr th:each="boleta: ${boleta.boletas}">
+						<td th:text="${boleta.id}"></td>
+						<td th:text="${boleta.descripcion}"></td>
+						<td th:text="${boleta.fecha}"></td>
+						<td th:text="${boleta.total}"></td>
+					</tr>
+				</tbody>
+				
+			</table>
+	
+			</div>
+		</div>
+	</div>
+	
+	<footer></footer>
+</body>
+</html>
